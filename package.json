@@ -1,0 +1,39 @@
+{
+  "name": "evehydrofarm",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.13.1",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev:api": "pnpm --filter @eve/api dev",
+    "dev:web": "pnpm --filter @eve/web dev",
+    "dev:monitoring": "pnpm --filter @eve/monitoring dev",
+    "db:cluster": "pnpm --filter @eve/db cluster",
+    "db:setup": "pnpm --filter @eve/db setup",
+    "db:migrate": "pnpm --filter @eve/db migrate",
+    "db:codegen": "pnpm --filter @eve/db codegen",
+    "db:seed": "pnpm --filter @eve/db seed",
+    "db:reset": "pnpm --filter @eve/db reset",
+    "api:keys": "pnpm --filter @eve/api keys",
+    "api:test-server": "pnpm --filter @eve/api test-server",
+    "format": "prettier --write . && cd apps/mobile && dart format lib test",
+    "format:check": "prettier --check . && cd apps/mobile && dart format --output=none --set-exit-if-changed lib test",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "check:repo": "pnpm --filter @eve/repo-check start",
+    "test": "pnpm -r test",
+    "openapi:check": "pnpm --filter @eve/api openapi:export && git diff --exit-code apps/api/openapi.json",
+    "e2e": "pnpm --filter @eve/web e2e && pnpm --filter @eve/monitoring e2e",
+    "mobile:analyze": "cd apps/mobile && flutter analyze",
+    "mobile:test": "cd apps/mobile && flutter test --exclude-tags integration",
+    "mobile:it": "node -e \"console.error('mobile:it belum diimplementasi (M7)'); process.exit(1)\"",
+    "mobile:build": "cd apps/mobile && flutter build apk --debug",
+    "verify": "pnpm format:check && pnpm check:repo && pnpm lint && pnpm typecheck && pnpm test && pnpm openapi:check && pnpm e2e && pnpm mobile:analyze && pnpm mobile:test && pnpm mobile:it && pnpm mobile:build"
+  },
+  "devDependencies": {
+    "prettier": "3.9.9",
+    "typescript": "6.0.3"
+  }
+}

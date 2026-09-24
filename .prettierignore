@@ -1,0 +1,9 @@
+# Dokumen spesifikasi ditulis tangan; tabel markdown tidak diformat ulang.
+docs/
+GOAL.md
+# Dart diformat oleh `dart format`, bukan Prettier.
+apps/mobile/
+# Hasil generate & lockfile.
+pnpm-lock.yaml
+packages/db/src/generated/
+apps/api/openapi.json

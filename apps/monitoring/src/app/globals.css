@@ -1,0 +1,15 @@
+@import 'tailwindcss';
+
+/* Token warna agri-hijau (07-website/00-umum.md menetapkan palet final di M6). */
+@theme {
+  --color-leaf-50: #f1f8f2;
+  --color-leaf-100: #dcefdf;
+  --color-leaf-600: #2f8a45;
+  --color-leaf-700: #246d37;
+  --color-leaf-900: #13391e;
+}
+
+body {
+  background-color: var(--color-leaf-50);
+  color: var(--color-leaf-900);
+}
