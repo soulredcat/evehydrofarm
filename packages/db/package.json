@@ -1,0 +1,35 @@
+{
+  "name": "@eve/db",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "cluster": "node -e \"console.error('db:cluster belum diimplementasi (M1)'); process.exit(1)\"",
+    "setup": "node -e \"console.error('db:setup belum diimplementasi (M1)'); process.exit(1)\"",
+    "migrate": "node -e \"console.error('db:migrate belum diimplementasi (M1)'); process.exit(1)\"",
+    "codegen": "node -e \"console.error('db:codegen belum diimplementasi (M1)'); process.exit(1)\"",
+    "seed": "node -e \"console.error('db:seed belum diimplementasi (M1)'); process.exit(1)\"",
+    "reset": "node -e \"console.error('db:reset belum diimplementasi (M1)'); process.exit(1)\"",
+    "lint": "eslint . --max-warnings 0",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "kysely": "0.29.6",
+    "pg": "8.23.0"
+  },
+  "devDependencies": {
+    "@eve/eslint-config": "workspace:*",
+    "@eve/tsconfig": "workspace:*",
+    "@types/node": "22.20.4",
+    "@types/pg": "8.23.1",
+    "eslint": "9.39.5",
+    "kysely-codegen": "0.20.0",
+    "tsx": "4.23.15",
+    "typescript": "6.0.3",
+    "vitest": "5.0.1"
+  }
+}

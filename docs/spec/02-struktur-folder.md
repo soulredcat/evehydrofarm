@@ -11,7 +11,8 @@ evehydrofarm/
 ├── GOAL.md                 # titik masuk /goal
 ├── README.md               # cara setup & menjalankan (singkat)
 ├── package.json            # script root saja (dev tooling), tanpa dependency runtime
-├── pnpm-workspace.yaml     # apps/*, packages/*, tools/*
+├── pnpm-workspace.yaml     # apps/*, packages/*, tools/* (+ onlyBuiltDependencies)
+├── pnpm-lock.yaml          # lockfile, di-commit
 ├── .editorconfig  .gitignore  .gitattributes  .prettierrc.json  .prettierignore  .env.example
 ├── apps/
 │   ├── api/                # APP PUSAT (backend TS)
@@ -146,7 +147,7 @@ packages/db/
 └── src/
     ├── index.ts                    # ekspor createDb + tipe
     ├── client/create-db.ts
-    ├── migrate/run-migrations.ts  migrate/cli.ts
+    ├── migrate/plan-migrations.ts  migrate/run-migrations.ts  migrate/cli.ts
     ├── setup/setup-roles.ts  setup/cli.ts
     ├── seed/<area>.seed.ts  seed/cli.ts
     └── generated/database.ts       # output kysely-codegen (jangan diedit tangan)
@@ -155,10 +156,10 @@ packages/contracts/src/
 ├── index.ts
 ├── primitives/                     # id, uang, berat, tanggal, paginasi, error
 ├── enums/<domain>.ts
-└── <domain>/<entitas>.ts           # iam/, core/, agro/, inventory/, sales/, files/, site/, sync/, reports/, monitoring/
+└── <domain>/<entitas>.ts           # iam/, core/, agro/, inventory/, sales/, costing/, files/, site/, sync/, reports/, monitoring/, system/
 
 tools/repo-check/
-├── src/main.ts  rules.ts  walk-files.ts  check-loc.ts  check-structure.ts  check-imports.ts
+├── src/main.ts  rules.ts  walk-files.ts  check-loc.ts  check-structure.ts  check-imports.ts  check-markers.ts
 └── test/<aturan>.test.ts           # fixture pelanggaran dibuat di folder temp saat test
 ```
 
@@ -212,7 +213,8 @@ Cara memenuhi batas = **memecah berdasarkan tanggung jawab**, bukan memadatkan k
 - ada file melebihi batas LOC tabel §9 (cetak path, jumlah baris, batas);
 - ada nama terlarang §8.1, folder > 12 file §8.2, atau `.md` di dalam `src/`/`lib/`;
 - ada file/folder root di luar §1;
-- ada impor lintas app (`from '../../api'`, `@eve/api` di web, dsb.).
+- ada impor lintas app (`from '../../api'`, `@eve/api` di web, dsb.) atau Website mengimpor `@eve/db`/`pg`/`kysely`;
+- ada penanda kerja tertunda (TODO/FIXME) di kode, atau test yang di-`skip`/`only` (`check-markers.ts`).
 
 Aturan batas & pengecualian didefinisikan sekali di `tools/repo-check/src/rules.ts`, sama dengan dokumen ini.
 Test `tools/repo-check/test/` membuktikan setiap aturan menolak contoh pelanggaran.

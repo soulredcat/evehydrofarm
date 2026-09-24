@@ -1,0 +1,10 @@
+{
+  "extends": "@eve/tsconfig/next.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "src", ".next/types/**/*.ts", "*.config.ts"],
+  "exclude": ["node_modules"]
+}
